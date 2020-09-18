@@ -2,8 +2,9 @@
   "name": "nodejs-case-study",
   "version": "1.0.0",
   "description": "This project is developed for a case study.",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
+    "start": "node -r esm src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --fix"
   },
@@ -17,7 +18,12 @@
     "url": "https://github.com/berkayclk/nodejs-case-study/issues"
   },
   "homepage": "https://github.com/berkayclk/nodejs-case-study#readme",
-  "dependencies": {},
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1"
+  },
   "devDependencies": {
     "eslint": "^7.9.0",
     "eslint-config-airbnb-base": "^14.2.0",
