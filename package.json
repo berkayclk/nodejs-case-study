@@ -1,0 +1,19 @@
+{
+  "name": "nodejs-case-study",
+  "version": "1.0.0",
+  "description": "This project is developed for a case study.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/berkayclk/nodejs-case-study.git"
+  },
+  "author": "Berkay Çelik <berkayc78@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/berkayclk/nodejs-case-study/issues"
+  },
+  "homepage": "https://github.com/berkayclk/nodejs-case-study#readme"
+}
