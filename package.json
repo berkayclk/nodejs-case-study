@@ -4,7 +4,8 @@
   "description": "This project is developed for a case study.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/berkayclk/nodejs-case-study/issues"
   },
-  "homepage": "https://github.com/berkayclk/nodejs-case-study#readme"
+  "homepage": "https://github.com/berkayclk/nodejs-case-study#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2"
+  }
 }
