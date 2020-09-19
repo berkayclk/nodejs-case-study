@@ -57,9 +57,9 @@ describe('Records fetching operations', () => {
                 return postRecordRequest(startDateMissingBody).expect(400);
             });
 
-            it('should return 400 response code when startDate is missing', async () => {
+            it('should return 2 response code when startDate is missing', async () => {
                 const response = await postRecordRequest(startDateMissingBody);
-                expect(response.body.code).toBe(400);
+                expect(response.body.code).toBe(2);
             });
 
             it('should return error message when startDate is missing', async () => {
@@ -83,9 +83,9 @@ describe('Records fetching operations', () => {
                 return postRecordRequest(wrongStartDateBody).expect(400);
             });
 
-            it('should return 400 response code for wrong startDate format', async () => {
+            it('should return 2 response code for wrong startDate format', async () => {
                 const response = await postRecordRequest(wrongStartDateBody);
-                expect(response.body.code).toBe(400);
+                expect(response.body.code).toBe(2);
             });
 
             it('should return empty records array for wrong startDate format', async () => {
@@ -108,9 +108,9 @@ describe('Records fetching operations', () => {
                 return postRecordRequest(endDateMissingBody).expect(400);
             });
 
-            it('should return 400 response code when endDate is missing', async () => {
+            it('should return 2 response code when endDate is missing', async () => {
                 const response = await postRecordRequest(endDateMissingBody);
-                expect(response.body.code).toBe(400);
+                expect(response.body.code).toBe(2);
             });
 
             it('should return error message when endDate is missing', async () => {
@@ -134,9 +134,9 @@ describe('Records fetching operations', () => {
                 return postRecordRequest(wrongEndDateBody).expect(400);
             });
 
-            it('should return 400 response code for wrong endDate format', async () => {
+            it('should return 2 response code for wrong endDate format', async () => {
                 const response = await postRecordRequest(wrongEndDateBody);
-                expect(response.body.code).toBe(400);
+                expect(response.body.code).toBe(2);
             });
 
             it('should return empty records array for wrong endDate format', async () => {
@@ -159,9 +159,9 @@ describe('Records fetching operations', () => {
                 return postRecordRequest(minCountMissingBody).expect(400);
             });
 
-            it('should return 400 response code when minCount is missing', async () => {
+            it('should return 2 response code when minCount is missing', async () => {
                 const response = await postRecordRequest(minCountMissingBody);
-                expect(response.body.code).toBe(400);
+                expect(response.body.code).toBe(2);
             });
 
             it('should return error message when minCount is missing', async () => {
@@ -185,9 +185,9 @@ describe('Records fetching operations', () => {
                 return postRecordRequest(wrongMinCountBody).expect(400);
             });
 
-            it('should return 400 response code for wrong minCount format', async () => {
+            it('should return 2 response code for wrong minCount format', async () => {
                 const response = await postRecordRequest(wrongMinCountBody);
-                expect(response.body.code).toBe(400);
+                expect(response.body.code).toBe(2);
             });
 
             it('should return empty records array for wrong minCount format', async () => {
@@ -208,9 +208,9 @@ describe('Records fetching operations', () => {
                 return postRecordRequest(maxCountMissingBody).expect(400);
             });
 
-            it('should return 400 response code when maxCount is missing', async () => {
+            it('should return 2 response code when maxCount is missing', async () => {
                 const response = await postRecordRequest(maxCountMissingBody);
-                expect(response.body.code).toBe(400);
+                expect(response.body.code).toBe(2);
             });
 
             it('should return error message when maxCount is missing', async () => {
@@ -234,9 +234,9 @@ describe('Records fetching operations', () => {
                 return postRecordRequest(wrongMaxCountBody).expect(400);
             });
 
-            it('should return 400 response code for wrong maxCount format', async () => {
+            it('should return 2 response code for wrong maxCount format', async () => {
                 const response = await postRecordRequest(wrongMaxCountBody);
-                expect(response.body.code).toBe(400);
+                expect(response.body.code).toBe(2);
             });
 
             it('should return empty records array for wrong maxCount format', async () => {
