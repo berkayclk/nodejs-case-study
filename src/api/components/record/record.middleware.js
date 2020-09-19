@@ -5,7 +5,7 @@ export const validateDateAndCountRange = async (req, res, next) => {
         await recordRangeRequestSchema.validateAsync(req.body);
     } catch (err) {
         const error = new ModelValidationError(err.message);
-        next(error);
+        return next(error);
     }
-    next();
+    return next();
 };
