@@ -4,6 +4,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import { logger } from './helpers';
 import './errors'; // set custom errors to global
+import { Environments } from './enums';
 
 import { ApiResponse } from './api/models';
 import { Record } from './routes';
@@ -12,7 +13,9 @@ import { Record } from './routes';
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-app.use(morgan('dev'));
+if (process.env.NODE_ENV !== Environments.TEST) {
+    app.use(morgan('dev'));
+}
 
 // define routes
 app.use('/records', Record);
