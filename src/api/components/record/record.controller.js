@@ -1,11 +1,8 @@
 import { findByDateAndCountRanges } from './record.DAL';
-import { recordRangeRequest } from './record.validators';
 import { ApiResponse } from '../../models';
 
-export const findByDateAndCountRangesHandler = async (req, res, next) => {
+export async function findByDateAndCountRangesHandler(req, res, next) {
     try {
-        await recordRangeRequest.validateAsync(req.body);
-
         const { minCount, maxCount, startDate, endDate } = req.body;
 
         const records = await findByDateAndCountRanges(
@@ -18,6 +15,6 @@ export const findByDateAndCountRangesHandler = async (req, res, next) => {
         const response = new ApiResponse(records);
         res.json(response);
     } catch (err) {
-        next(err);
+        next(new UnexpectedError(err));
     }
-};
+}

@@ -1,8 +1,12 @@
 import { Router } from 'express';
-import { findByDateAndCountRangesHandler } from '../api/components/record';
+import { RecordControllers, RecordMiddlewares } from '../api/components/record';
 
 const router = Router();
 
-router.post('/findByDateAndCount', findByDateAndCountRangesHandler);
+router.post(
+    '/findByDateAndCount',
+    RecordMiddlewares.validateDateAndCountRange,
+    RecordControllers.findByDateAndCountRangesHandler
+);
 
 export default router;
