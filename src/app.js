@@ -27,9 +27,9 @@ app.use((req, res, next) => {
 /**
  * handle all errors is sent by next functions
  */
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
     const code = err.code || 400;
-    const httpCode = err.httpCode || 404;
+    const httpCode = err.httpCode || 400;
     return res.status(httpCode).json(new ApiResponse([], code, err.message));
 });
 
