@@ -1,5 +1,5 @@
 import winston from 'winston';
-import Environments from '../enums/environments';
+import { Environments } from '../enums';
 
 const logger = winston.createLogger({
     level: 'info',
