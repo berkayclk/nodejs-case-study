@@ -15,6 +15,11 @@ const recordSchema = new Schema(
             required: true,
             default: [],
         },
+        createdAt: {
+            type: Date,
+            required: true,
+            default: new Date(),
+        },
     },
     {
         timestamp: {
