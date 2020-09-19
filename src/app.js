@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 import { ApiResponse } from './api/models';
 import { Record } from './routes';
@@ -7,6 +8,7 @@ import { Record } from './routes';
 // init express application
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 app.use('/records', Record);
 
