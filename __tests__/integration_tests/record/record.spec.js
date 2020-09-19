@@ -93,18 +93,6 @@ describe('Records fetching operations', () => {
             expect(response.body.records.length).toBe(2);
         });
 
-        it('should return 2 records for the 2015 request', async () => {
-            const body = {
-                startDate: '2015-01-01',
-                endDate: '2015-12-31',
-                minCount: 0,
-                maxCount: Number.MAX_SAFE_INTEGER,
-            };
-            const response = await postRecordRequest(body);
-            expect(response.body.records).not.toBeNull();
-            expect(response.body.records.length).toBe(2);
-        });
-
         it('should return 1 records for 4250-4500 count range', async () => {
             const validKey = 'BGSENDtP'; // count:4374
             const body = {
