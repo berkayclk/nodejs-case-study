@@ -20,5 +20,11 @@
         "indent": ["error", 4],
         "prettier/prettier": "error",
         "import/prefer-default-export": "off"
+    },
+    "globals": {
+        "CustomErrorBase": true,
+        "UnexpectedError": true,
+        "ModelValidationError": true,
+        "NotFoundError": true
     }
 }

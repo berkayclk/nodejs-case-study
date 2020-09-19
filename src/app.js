@@ -2,6 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
+import { logger } from './helpers';
+import './errors'; // set custom errors to global
 
 import { ApiResponse } from './api/models';
 import { Record } from './routes';
@@ -12,25 +14,32 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan('dev'));
 
+// define routes
 app.use('/records', Record);
 
 /**
  * handle not mapped url error
  */
 app.use((req, res, next) => {
-    const error = new Error('Wrong path!');
-    error.code = 404;
-    error.httpCode = 404;
+    // eslint-disable-next-line no-undef
+    const error = new NotFoundError();
     next(error);
 });
 
 /**
  * handle all errors is sent by next functions
  */
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-    const code = err.code || 400;
-    const httpCode = err.httpCode || 400;
-    return res.status(httpCode).json(new ApiResponse([], code, err.message));
+    logger.error(err);
+    let error = err;
+    if (!(error instanceof CustomErrorBase)) {
+        error = new UnexpectedError();
+    }
+
+    return res
+        .status(error.httpCode)
+        .json(new ApiResponse([], error.code, error.message));
 });
 
 export default app;
