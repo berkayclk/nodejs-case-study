@@ -6,8 +6,8 @@ export async function findByDateAndCountRangesHandler(req, res, next) {
         const { minCount, maxCount, startDate, endDate } = req.body;
 
         const records = await findByDateAndCountRanges(
-            startDate,
-            endDate,
+            new Date(startDate),
+            new Date(endDate),
             minCount,
             maxCount
         );
