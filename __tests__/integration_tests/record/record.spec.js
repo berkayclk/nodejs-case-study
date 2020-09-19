@@ -1,10 +1,22 @@
 import '../../../src/config/env.config';
 import subertest from 'supertest';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 import app from '../../../src/app';
 import connectMongo from '../../../src/helpers/connectMongo';
 
+import Records from '../../../src/models/record'; // db model
+import RecordSampleData from '../../data/record.sample'; // load sample data
+
+const mongoServer = new MongoMemoryServer();
+const resetRecordData = async () => {
+    await Records.remove({}, { multi: true });
+    await Records.create(RecordSampleData);
+};
+
+// connect to in-memory test db
 beforeAll(async () => {
-    return connectMongo();
+    const uri = await mongoServer.getUri();
+    return connectMongo(uri);
 });
 
 describe('Records fetching operations', () => {
@@ -46,6 +58,96 @@ describe('Records fetching operations', () => {
             expect(response.body.msg).toBe('success');
         });
     });
+
+    describe('Fetch records correctly', () => {
+        beforeEach(resetRecordData);
+
+        it('should return fields correctly of the records ', async () => {
+            // should be fetch the any data
+            const body = {
+                startDate: '2010-01-01',
+                endDate: '2020-12-31',
+                minCount: 0,
+                maxCount: Number.MAX_SAFE_INTEGER,
+            };
+            const response = await postRecordRequest(body);
+            expect(response.body.records).not.toBeNull();
+            expect(response.body.records.length).toBeGreaterThan(0);
+
+            response.body.records.forEach((data) => {
+                expect(data.key).not.toBeNull();
+                expect(data.createdAt).not.toBeNull();
+                expect(data.totalCount).not.toBeNull();
+            });
+        });
+
+        it('should return 2 records for the 2015 request', async () => {
+            const body = {
+                startDate: '2015-01-01',
+                endDate: '2015-12-31',
+                minCount: 0,
+                maxCount: Number.MAX_SAFE_INTEGER,
+            };
+            const response = await postRecordRequest(body);
+            expect(response.body.records).not.toBeNull();
+            expect(response.body.records.length).toBe(2);
+        });
+
+        it('should return 2 records for the 2015 request', async () => {
+            const body = {
+                startDate: '2015-01-01',
+                endDate: '2015-12-31',
+                minCount: 0,
+                maxCount: Number.MAX_SAFE_INTEGER,
+            };
+            const response = await postRecordRequest(body);
+            expect(response.body.records).not.toBeNull();
+            expect(response.body.records.length).toBe(2);
+        });
+
+        it('should return 1 records for 4250-4500 count range', async () => {
+            const validKey = 'BGSENDtP'; // count:4374
+            const body = {
+                startDate: '2010-01-01',
+                endDate: '2020-12-31',
+                minCount: 4250,
+                maxCount: 4500,
+            };
+            const response = await postRecordRequest(body);
+            expect(response.body.records).not.toBeNull();
+            expect(response.body.records.length).toBe(1);
+            expect(response.body.records[0].key).toBe(validKey);
+        });
+
+        it('should return 1 records for date-count combination', async () => {
+            const validKey = 'gzdulvOE'; // count: 3873, date: 2016-07-02
+            const body = {
+                startDate: '2016-07-01',
+                endDate: '2016-07-30',
+                minCount: 3500,
+                maxCount: 4000,
+            };
+            const response = await postRecordRequest(body);
+            expect(response.body.records).not.toBeNull();
+            expect(response.body.records.length).toBe(1);
+            expect(response.body.records[0].key).toBe(validKey);
+        });
+
+        it('should return records inside of the endDate', async () => {
+            const validKey = 'gzdulvOE'; // count: 3873, date: 2016-07-02T16:16:03.540
+            const body = {
+                startDate: '2016-07-01',
+                endDate: '2016-07-02',
+                minCount: 3800,
+                maxCount: 3900,
+            };
+            const response = await postRecordRequest(body);
+            expect(response.body.records).not.toBeNull();
+            expect(response.body.records.length).toBe(1);
+            expect(response.body.records[0].key).toBe(validKey);
+        });
+    });
+
     describe('Validation testing', () => {
         it('should return 400 http response code for empty body', async () => {
             return postRecordRequest({}).expect(400);
