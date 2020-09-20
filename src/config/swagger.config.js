@@ -65,6 +65,7 @@ const swaggerDoc = {
                                     code: 2,
                                     msg: '"startDate" is required!',
                                     records: [],
+                                    apiDocUrl: 'http://api-doc-url',
                                 },
                             },
                         },
@@ -82,6 +83,26 @@ const swaggerDoc = {
                         type: 'integer',
                     },
                     msg: {
+                        type: 'string',
+                    },
+                    records: {
+                        type: 'array',
+                        items: {
+                            $ref: '#/components/schemas/RecordResponse',
+                        },
+                    },
+                },
+            },
+            ApiErrorResponse: {
+                type: 'object',
+                properties: {
+                    code: {
+                        type: 'integer',
+                    },
+                    msg: {
+                        type: 'string',
+                    },
+                    apiDocUrl: {
                         type: 'string',
                     },
                     records: {

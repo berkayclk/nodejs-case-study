@@ -7,7 +7,7 @@ import { appConfig } from './config';
 import './errors'; // set custom errors to global
 import { Environments } from './enums';
 
-import { ApiResponse } from './api/models';
+import { ApiErrorResponse } from './api/models';
 import { Record } from './routes';
 
 // init express application
@@ -20,7 +20,7 @@ if (appConfig.ENV !== Environments.TEST) {
 
 // define routes
 app.use('/records', Record);
-bindSwaggerDoc(app); // binds swagger documentation to api-doc path
+const SWAGGER_DOC_URL = bindSwaggerDoc(app); // binds swagger documentation to api-doc path
 
 /**
  * handle not mapped url error
@@ -44,7 +44,7 @@ app.use((err, req, res, next) => {
 
     return res
         .status(error.httpCode)
-        .json(new ApiResponse([], error.code, error.message));
+        .json(new ApiErrorResponse(error.code, error.message, SWAGGER_DOC_URL));
 });
 
 export default app;
