@@ -203,4 +203,15 @@ describe('Record Controller Tests', () => {
             expect(responseBody.records[0].key).toBe(validKey);
         });
     });
+
+    describe('Error Cases', () => {
+        it('should call next function with UnexpectedError when body is null', async () => {
+            const { next } = await callFunction({});
+
+            expect(next.mock.calls.length).toBe(1);
+            expect(next.mock.calls[0]).not.toBeNull();
+            expect(next.mock.calls[0].length).toBe(1);
+            expect(next.mock.calls[0][0]).toBeInstanceOf(UnexpectedError);
+        });
+    });
 });
