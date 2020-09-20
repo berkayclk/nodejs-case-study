@@ -2,8 +2,16 @@
 
 The api filters and returns the records. It is developed for a case-study.  
 
-**Live Url:** https://record-case-api.herokuapp.com/  
-**Documentation Url:** https://record-case-api.herokuapp.com/api-docs
+#### App Deployment
+The app is deployed to both **AWS EC2** and **HEROKU** hosts. The links are below. 
+
+- Heroku Deployment ( auto-deployed by master )
+    - **Heroku Url:** https://record-case-api.herokuapp.com/  
+    - **Heroku Doc:** https://record-case-api.herokuapp.com/api-docs
+
+- AWS EC2 Deployment
+    - **AWS Url:** http://ec2-54-236-24-203.compute-1.amazonaws.com/  
+    - **AWS Doc:** http://ec2-54-236-24-203.compute-1.amazonaws.com/api-docs
 
 #### Setting up the project
 
@@ -38,10 +46,9 @@ The project can run on the local environment or the docker environment. The run 
 
 App will be running on the PORT that is given by env file.
 
-### Running Tests
+#### Running Tests
 
 Integration and unit tests are created. To run these test, you should run the following command on your terminal.
 ```bash
   npm run test
 ```
-
