@@ -1,0 +1,13 @@
+version: "3"
+services:
+  record-node-api:
+    container_name: recordapi
+    build: .
+    env_file: .env
+    environment:
+      - MONGODB_URL=$MONGODB_URL
+      - APP_URL=$APP_URL
+      - APP_PORT=$APP_PORT
+      - NODE_ENV=$NODE_ENV
+    ports:
+      - "8080:8080"
