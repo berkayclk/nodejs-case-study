@@ -2,7 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
-import { logger } from './helpers';
+import { logger, bindSwaggerDoc } from './helpers';
+import { appConfig } from './config';
 import './errors'; // set custom errors to global
 import { Environments } from './enums';
 
@@ -13,12 +14,13 @@ import { Record } from './routes';
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-if (process.env.NODE_ENV !== Environments.TEST) {
+if (appConfig.ENV !== Environments.TEST) {
     app.use(morgan('dev'));
 }
 
 // define routes
 app.use('/records', Record);
+bindSwaggerDoc(app); // binds swagger documentation to api-doc path
 
 /**
  * handle not mapped url error
