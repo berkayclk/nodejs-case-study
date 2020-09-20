@@ -5,14 +5,18 @@ import Records from '../../../models/record';
  * @return {Promise<[Records]>}
  */
 export const findAll = async () => {
-    return Records.aggregate().project({
-        _id: 0,
-        key: 1,
-        createdAt: 1,
-        totalCount: {
-            $sum: '$counts',
-        },
-    });
+    return Records.aggregate()
+        .project({
+            _id: 0,
+            key: 1,
+            createdAt: 1,
+            totalCount: {
+                $sum: '$counts',
+            },
+        })
+        .sort({
+            totalCount: -1,
+        });
 };
 
 /**
@@ -49,5 +53,8 @@ export const findByDateAndCountRanges = async (
                 $gte: minCount,
                 $lte: maxCount,
             },
+        })
+        .sort({
+            totalCount: -1,
         });
 };
