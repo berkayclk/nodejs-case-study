@@ -15,7 +15,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 if (appConfig.ENV !== Environments.TEST) {
-    app.use(morgan('dev'));
+    app.use(morgan('combined'));
 }
 
 // define routes
