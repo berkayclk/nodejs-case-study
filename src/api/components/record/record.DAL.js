@@ -5,7 +5,14 @@ import Records from '../../../models/record';
  * @return {Promise<[Records]>}
  */
 export const findAll = async () => {
-    return Records.find().lean();
+    return Records.aggregate().project({
+        _id: 0,
+        key: 1,
+        createdAt: 1,
+        totalCount: {
+            $sum: '$counts',
+        },
+    });
 };
 
 /**

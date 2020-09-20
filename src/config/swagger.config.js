@@ -26,6 +26,42 @@ const swaggerDoc = {
         },
     ],
     paths: {
+        '/records': {
+            get: {
+                tags: ['Record Api'],
+                summary: 'Returns all records',
+                description: 'Fetches the records from backend application.',
+                operationId: 'findAll',
+                responses: {
+                    200: {
+                        description: 'Records is successfully fetched.',
+                        content: {
+                            'application/json': {
+                                schema: {
+                                    $ref: '#/components/schemas/ApiResponse',
+                                },
+                            },
+                        },
+                    },
+                    400: {
+                        description: 'Bad request error',
+                        content: {
+                            'application/json': {
+                                schema: {
+                                    $ref: '#/components/schemas/ApiResponse',
+                                },
+                                example: {
+                                    code: 1,
+                                    msg: 'An error has been occurred!',
+                                    records: [],
+                                    apiDocUrl: 'http://api-doc-url',
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
         '/records/findByDateAndCount': {
             post: {
                 tags: ['Record Api'],
@@ -33,7 +69,7 @@ const swaggerDoc = {
                     'Filters the records according to ranges of the date and count.',
                 description:
                     'Fetches the records from backend application according to min-max values of the date and total count.',
-                operationId: 'find',
+                operationId: 'findByDateAndCount',
                 requestBody: {
                     content: {
                         'application/json': {

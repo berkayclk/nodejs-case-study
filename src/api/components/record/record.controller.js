@@ -1,6 +1,17 @@
 import moment from 'moment';
-import { findByDateAndCountRanges } from './record.DAL';
+import { findAll, findByDateAndCountRanges } from './record.DAL';
 import { ApiResponse } from '../../models';
+
+export async function findAllHandler(req, res, next) {
+    try {
+        const records = await findAll();
+
+        const response = new ApiResponse(records);
+        res.json(response);
+    } catch (err) {
+        next(new UnexpectedError(err));
+    }
+}
 
 export async function findByDateAndCountRangesHandler(req, res, next) {
     try {
