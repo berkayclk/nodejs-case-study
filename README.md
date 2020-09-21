@@ -3,8 +3,9 @@
 The api filters and returns the records. It is developed for a case-study.  
 
 #### App Deployment
-The app is deployed to both **AWS EC2** and **HEROKU** hosts. The links are below. 
-
+The app is deployed to both **AWS EC2** and **HEROKU** hosts. The links are below.  
+A simple table view ui was implemented on the base path. 
+ 
 - Heroku Deployment ( auto-deployed by master )
     - **Heroku Url:** https://record-case-api.herokuapp.com/  
     - **Heroku Doc:** https://record-case-api.herokuapp.com/api-docs

@@ -24,8 +24,27 @@ const swaggerDoc = {
             name: 'Record Api',
             description: 'Handle record requests',
         },
+        {
+            name: 'View Endpoints',
+            description: 'Handle record requests',
+        },
     ],
     paths: {
+        '/': {
+            get: {
+                tags: ['View Endpoints'],
+                summary: 'Returns a simple table view to represent record data.',
+                operationId: 'tableView',
+                responses: {
+                    200: {
+                        description: "Returns html page",
+                        content: {
+                            "text/html": {}
+                        }
+                    }
+                }
+            }
+        },
         '/records': {
             get: {
                 tags: ['Record Api'],
