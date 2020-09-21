@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Table V02</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="../images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../css/util.css">
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+<!--===============================================================================================-->
+
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="table-container">
+
+			<div class="filter-form">
+				<form>
+					<fieldset>
+						<legend>RECORD API</legend>
+					</fieldset>
+
+					<div class="inner-form">
+						<div class="input-field first-wrap">
+							<div class="icon-wrap">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+									<path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"></path>
+								</svg>
+							</div>
+							<input class="datepicker" id="startDate" name="startDate" type="text" placeholder="Start Date" />
+						</div>
+						<div class="input-field second-wrap">
+							<div class="icon-wrap">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+									<path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"></path>
+								</svg>
+							</div>
+							<input class="datepicker" id="endDate" name="endDate" type="text" placeholder="End Date" />
+						</div>
+						<div class="input-field third-wrap">
+							<input id="minCount" name="minCount" type="number" placeholder="Min Count" />
+						</div>
+						<div class="input-field fourth-wrap">
+							<input id="maxCount" name="maxCount" type="number" placeholder="Max Count" />
+						</div>
+						<div class="input-field fifth-wrap">
+							<button class="btn-search" type="button" id="filterData" onclick="sendFilterReq()" >FILTER</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="table-wrapper">
+					<div class="table">
+
+						<div class="row header" id="table-header">
+							<div class="cell">
+								Key
+							</div>
+							<div class="cell">
+								Create Date
+							</div>
+							<div class="cell">
+								Total Count
+							</div>
+						</div>
+
+						<div class="row loading" style="display: none">
+							<div class="cell">
+								Loading...
+							</div>
+							<div class="cell">
+							</div>
+							<div class="cell">
+							</div>
+						</div>
+
+						<div class="row nodata" style="display: none">
+							<div class="cell">
+								No Data Found!
+							</div>
+							<div class="cell">
+							</div>
+							<div class="cell">
+							</div>
+						</div>
+
+					</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../vendor/bootstrap/js/popper.js"></script>
+	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../vendor/select2/select2.min.js"></script>
+	<script src="../js/extention/choices.js"></script>
+	<script src="../js/extention/flatpickr.js"></script>
+	<script src="../js/main.js"></script>
+	<script>
+		flatpickr(".datepicker",{});
+		const choices = new Choices('[data-trigger]',
+				{
+					searchEnabled: false,
+					itemSelectText: '',
+				});
+
+	</script>
+</body>
+</html>
