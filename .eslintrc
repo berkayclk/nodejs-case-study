@@ -26,5 +26,6 @@
         "UnexpectedError": true,
         "ModelValidationError": true,
         "NotFoundError": true
-    }
+    },
+    "excludedFiles": "**/public/**/*.test.js"
 }

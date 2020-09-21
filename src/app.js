@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
+import ejs from 'ejs';
 import { logger, bindSwaggerDoc } from './helpers';
 import { appConfig } from './config';
 import './errors'; // set custom errors to global
@@ -17,6 +18,13 @@ app.use(cors());
 if (appConfig.ENV !== Environments.TEST) {
     app.use(morgan('combined'));
 }
+
+// set view engine
+// eslint-disable-next-line no-underscore-dangle
+app.use(express.static(`${__dirname}/public`));
+app.set('views', `${__dirname}/public/views`);
+app.engine('.ejs', ejs.__express);
+app.get('/', (req, res) => res.render('index.ejs'));
 
 // define routes
 app.use('/records', Record);
